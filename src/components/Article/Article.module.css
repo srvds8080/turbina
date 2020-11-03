@@ -1,0 +1,23 @@
+.grid{
+  display: grid;
+  grid-gap: 18px;
+  margin-bottom: 60px;
+}
+.title {
+  margin-top: 0;
+  margin-bottom: 44px;
+  text-align: start;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.content {
+  margin: 0;
+  text-align: start;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.21;
+}

@@ -1,0 +1,12 @@
+.main {
+  max-width: 1260px;
+  height: auto;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  border-radius: 10px;
+  }
+.articles{
+  max-width: 716px;
+  height: auto;
+  padding: 64px 0 86px 58px;
+}
