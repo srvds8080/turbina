@@ -4,5 +4,7 @@
 .root {
   min-height: 100%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  background: url(./images/header-bg.jpg) repeat-y;
+  background-color: #000000;
+  background-size: cover;
+  background-attachment: fixed;
 }

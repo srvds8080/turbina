@@ -7,19 +7,24 @@ import {
   articleThesis,
   articleHowItWork
 } from "./utils/constants"
+import {Form} from "./components/Form/Form";
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <Main>
-        <Article title={"О проекте"}
-                 contentArray={articleAbout}/>
-        <Article title={"Как это работает"}
-                 contentArray={articleHowItWork}/>
-        <Article title={"Тезисы"}
-                 contentArray={articleThesis}/>
-      </Main>
+      {/*<div className={styles.background}>*/}
+        <Main>
+          <Article title={"О проекте."}
+                   contentArray={articleAbout}/>
+          <Article title={"Как это работает?"}
+                   contentArray={articleHowItWork}/>
+          <Article title={"Тезисы."}
+                   contentArray={articleThesis}/>
+          <Form/>
+        </Main>
+      {/*</div>*/}
+
     </div>
   );
 }

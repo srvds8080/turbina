@@ -1,7 +1,6 @@
 .header {
+  background-color: #59636C;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0);
-  background-size: cover;
   position: relative;
   min-height: 780px;
 }

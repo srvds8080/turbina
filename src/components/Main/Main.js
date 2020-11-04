@@ -12,3 +12,14 @@ export function Main({children}) {
     </main>
   )
 }
+/*
+<section className={styles.articles} id='1'>
+  <div className={styles.article}>
+    <h2 className={styles.title}>GGGHG</h2>
+    <div className={styles.grid}>
+      <p className={styles.content}>• Дети никогда не прекращают творить и круто
+        стараться быть на них похожими в этом.</p>
+    </div>
+
+  </div>
+</section>*/
