@@ -3,7 +3,8 @@
   background: url(../../images/header-bg.jpg) no-repeat;
   background-size: cover;
   position: relative;
-  min-height: 780px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .navigation {
