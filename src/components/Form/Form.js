@@ -43,7 +43,7 @@ export function Form() {
         <span className={styles.formError} id={styles.formError}/>
         <input
           name="form_text"
-          className={styles.inputLast}
+          className={`${styles.input} ${styles.inputLast}`}
           required
           placeholder="Стихи"
           autoComplete="off"/>
