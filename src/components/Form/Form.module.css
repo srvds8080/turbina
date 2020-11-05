@@ -31,9 +31,15 @@
   outline: none;
 }
 
-/*селектор не применяется, возможно в модулях по дрегому используется??*/
-.input:last-child {
+
+/*селектор не применяется, возможно в модулях по другому используется??*/
+.inputLast {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: 2px solid black;
   margin-bottom: 0;
+  outline: none;
 }
 
 .inputTextArea {
@@ -53,7 +59,7 @@
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 33px;
+  margin-top: 43px;
 }
 
 .labelLink {
@@ -67,7 +73,7 @@
   user-select: none;
 }
 
-.label::after {
+.checkCircle {
   content: '';
   display: block;
   width: 28px;
@@ -77,12 +83,14 @@
   margin-right: 20px;
 }
 
-/*Здесь не применяется стиль при нажатии на чекБокс*/
-.checkBox:checked + label::after {
+.checkCircleActive {
   background-color: black;
 }
 
 .labelText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 0;
   margin-bottom: 0;
 }

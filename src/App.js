@@ -15,11 +15,11 @@ function App() {
       <Header/>
       {/*<div className={styles.background}>*/}
         <Main>
-          <Article title={"О проекте."}
+          <Article title="О проекте."
                    contentArray={articleAbout}/>
-          <Article title={"Как это работает?"}
+          <Article title="Как это работает?"
                    contentArray={articleHowItWork}/>
-          <Article title={"Тезисы."}
+          <Article title="Тезисы."
                    contentArray={articleThesis}/>
           <Form/>
         </Main>

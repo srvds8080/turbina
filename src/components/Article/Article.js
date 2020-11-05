@@ -8,10 +8,9 @@ export function Article({title, contentArray}) {
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.grid}>
         {
-          contentArray.map((paragraph) => <p className={styles.content}>{paragraph}</p>)
+          contentArray.map((paragraph) => <p key={styles.content.toString()} className={styles.content}>{paragraph}</p>)
         }
       </div>
-
     </>
   )
 }

@@ -4,10 +4,10 @@ import styles from "./Form.module.css"
 export function Form() {
 
   const [isChecked, setCheck] = React.useState(false)
+  const toggleCheckBox = React.useCallback(() => {
+    setCheck(!isChecked)
+  }, [isChecked])
 
-  function toggleCheckBox() {
-    setCheck(true)
-  }
 
   return (
     <form action="#" name='#' method="get" className={styles.form} noValidate>
@@ -43,7 +43,7 @@ export function Form() {
         <span className={styles.formError} id={styles.formError}/>
         <input
           name="form_text"
-          className={styles.input}
+          className={styles.inputLast}
           required
           placeholder="Стихи"
           autoComplete="off"/>
@@ -54,9 +54,14 @@ export function Form() {
           className={styles.checkBox}
           required
           autoComplete="off"/>
-        <label id="form_check" className={styles.label}><p className={styles.labelText}>Согласен с <a href="#" className={styles.labelLink}>офертой</a></p></label>
+        <label id="form_check" onClick={() => toggleCheckBox()} className={styles.label}>
+          <p
+            className={styles.labelText}><span
+            className={`${styles.checkCircle} ${isChecked && styles.checkCircleActive}`}/>Согласен
+            с&#8194;<a href="#"
+                 className={styles.labelLink}>офертой</a>
+          </p></label>
         <span className={styles.formError} id={styles.formError}/>
-
       </>
       <button className={styles.button} type="submit">Отправить форму</button>
     </form>
