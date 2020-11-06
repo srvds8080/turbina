@@ -1,0 +1,107 @@
+.form {
+  max-width: 600px;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 40px;
+  text-align: start;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 80px;
+  text-align: start;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+
+.inputLast {
+  margin-bottom: 0;
+}
+
+.inputTextArea {
+  width: 100%;
+  height: 280px;
+  border-radius: 30px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 20px;
+  margin-bottom: 16px;
+  border: 2px solid black;
+  outline: none;
+}
+
+.label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 43px;
+}
+
+.labelLink {
+  color: #000000;
+}
+
+.checkBox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  user-select: none;
+}
+
+.checkCircle {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.checkCircleActive {
+  background-color: black;
+}
+
+.labelText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.button {
+  width: 100%;
+  height: 60px;
+  margin-top: 43px;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  background-color: transparent;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.formError {
+
+}
