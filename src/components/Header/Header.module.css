@@ -1,8 +1,10 @@
 .header {
-  background-color: #59636C;
-  padding: 20px;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 15px 5px 0;
   position: relative;
-  min-height: 780px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .navigation {
@@ -36,6 +38,10 @@
   border: 2px solid #fff;
   border-radius: 30px;
   padding: 8px 20px;
+}
+
+.streamingLink:hover {
+  font-style: italic;
 }
 
 .title {

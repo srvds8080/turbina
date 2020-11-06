@@ -1,0 +1,29 @@
+.container {
+  max-width: 1260px;
+  padding: 20px 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #fff;
+}
+
+.author {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #fff;
+}
+
+.authorLink {
+  color: #fff;
+}
+
+.authorLink:hover {
+  font-style: italic;
+}
