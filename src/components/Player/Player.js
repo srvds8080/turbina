@@ -87,19 +87,17 @@ export function Player({ releaseList }) {
         </audio>
       </div>
       {
-        isOpenPlaylist && (
-            <div className={styles.penal}>
-              <h3 className={styles.penalTitle}>{isOpenLyrics ? 'Текст песни:' : 'Релизы:'}</h3>
-              {
-                isOpenLyrics ? <div className={styles.lyrics}>{currentTrack.lyrics}</div> : (
-                  <ul className={styles.releases}> {
-                    releaseList.map((track) => (
-                      <li key={track.name} className={styles.track}><Track onClick={switchTrack} track={track}/></li>
-                    ))}
-                  </ul>)
-              }
-            </div>
-        )
+        <div className={`${styles.penal} ${isOpenPlaylist ? styles.penal_state_visible : ''}`}>
+          <h3 className={styles.penalTitle}>{isOpenLyrics ? 'Текст песни:' : 'Релизы:'}</h3>
+          {
+            isOpenLyrics ? <div className={styles.lyrics}>{currentTrack.lyrics}</div> : (
+              <ul className={styles.releases}> {
+                releaseList.map((track) => (
+                  <li key={track.name} className={styles.track}><Track onClick={switchTrack} track={track}/></li>
+                ))}
+              </ul>)
+          }
+        </div>
       }
     </div>
   );
