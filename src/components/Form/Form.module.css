@@ -5,21 +5,18 @@
 .title {
   margin-top: 0;
   margin-bottom: 40px;
-  text-align: start;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 30px;
-  line-height: 1.2;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 61px;
 }
 
 .subtitle {
   margin-top: 0;
-  margin-bottom: 80px;
-  text-align: start;
-  font-style: normal;
-  font-weight: normal;
+  margin-bottom: 60px;
+  font-weight: 400;
   font-size: 16px;
-  line-height: 1.35;
+  line-height: 22px;
 }
 
 .input {
@@ -30,7 +27,6 @@
   margin-bottom: 10px;
   outline: none;
 }
-
 
 .inputLast {
   margin-bottom: 0;
@@ -68,7 +64,7 @@
 }
 
 .checkCircle {
-  content: '';
+  content: "";
   display: block;
   width: 28px;
   height: 28px;
@@ -100,8 +96,4 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-}
-
-.formError {
-
 }

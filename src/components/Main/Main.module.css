@@ -1,41 +1,12 @@
 .main {
-  max-width: 1280px;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: auto;
-  background-color: #FFFFFF;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 110px 51px;
+  background-color: #fff;
   border-radius: 10px;
-  }
-@media screen and (min-width: 1300px) {
-  .main {
-    margin: 0 auto;
-  }
-}
-.articles{
-  max-width: 760px;
-  height: auto;
-  padding: 64px 58px 86px 58px;
-}
-.grid{
-  display: grid;
-  grid-gap: 18px;
-  margin-bottom: 60px;
-}
-.title {
-  margin-top: 0;
-  margin-bottom: 44px;
-  text-align: start;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 30px;
-  line-height: 1;
+  box-sizing: border-box;
 }
 
-.content {
-  margin: 0;
-  text-align: start;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 1.32;
+.articles {
+  max-width: 760px;
 }
