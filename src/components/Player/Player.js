@@ -1,12 +1,16 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, {useRef, useState, useCallback, useEffect, useMemo} from "react";
 import styles from "./Player.module.css";
-import { Track } from "../Track/Track";
-import { ReactComponent as PlayIcon } from "../../images/play.svg";
-import { ReactComponent as PauseIcon } from "../../images/pause.svg";
-import { ReactComponent as ArrowIcon } from "../../images/arrow.svg";
-import { ReactComponent as CrossIcon } from "../../images/cross.svg";
+import {Track} from "../Track/Track";
+import {ReactComponent as PlayIcon} from "../../images/play.svg";
+import {ReactComponent as PauseIcon} from "../../images/pause.svg";
+import {ReactComponent as ArrowIcon} from "../../images/arrow.svg";
+import {ReactComponent as CrossIcon} from "../../images/cross.svg";
+const body = document.querySelector('.root');
 
-export function Player({ releaseList }) {
+export function Player({releaseList}) {
+
+  const testElemen = useRef();
+  //
   const audioElement = useRef();
   const trackName = useRef();
   const [isPaused, setIsPaused] = useState(true);
@@ -20,6 +24,39 @@ export function Player({ releaseList }) {
   const duration = audioElement.current
     ? Math.round(audioElement.current.duration)
     : 0;
+
+  // const [context, setContext] = useState(null);
+  // const [analyser, setAnalyser] = useState(null);
+  // const [audioSource, setAudioSource] = useState(null);
+
+  useEffect(() => {
+    const cxt = new window.AudioContext();
+    const anl = cxt.createAnalyser();
+    const audioSource = cxt.createMediaElementSource(audioElement.current)
+    anl.fftSize = 256;
+    // setAnalyser(anl);
+    // setContext(cxt);
+    // setAudioSource(audioSource)
+    audioSource.connect(anl)
+    anl.connect(cxt.destination)
+
+
+    const loop = () => {
+      if (isPaused) {
+        window.requestAnimationFrame(loop)
+      }
+      if (cxt.state === "suspended") {
+      cxt.resume();
+      }
+      const array = new Uint8Array(1024);
+      anl.getByteFrequencyData(array);
+      console.log(array)
+    }
+
+    loop()
+  }, [])
+
+
 
   const togglePlay = useCallback(() => {
     if (audioElement.current) {
@@ -75,10 +112,10 @@ export function Player({ releaseList }) {
   );
 
   return (
-    <div className={styles.container}>
+    <div ref={testElemen} className={styles.container}>
       <div className={styles.playerContainer}>
         <button onClick={togglePlay} className={styles.playBtn}>
-          {isPaused ? <PlayIcon /> : <PauseIcon />}
+          {isPaused ? <PlayIcon/> : <PauseIcon/>}
         </button>
         <div className={styles.songContainer}>
           <div className={styles.songContent}>
@@ -98,7 +135,7 @@ export function Player({ releaseList }) {
           <div className={styles.progressBar}>
             <span
               className={styles.progress}
-              style={{ width: `${(currentTime / duration) * 100}%` }}
+              style={{width: `${(currentTime / duration) * 100}%`}}
             ></span>
           </div>
         </div>
@@ -108,7 +145,7 @@ export function Player({ releaseList }) {
           </button>
         )}
         <button onClick={togglePlaylist} className={styles.togglePlaylist}>
-          {isOpenPlaylist ? <CrossIcon /> : <ArrowIcon />}
+          {isOpenPlaylist ? <CrossIcon/> : <ArrowIcon/>}
         </button>
         <audio ref={audioElement} controls className={styles.nativePlayer}>
           <source src={currentTrack.link} type="audio/mp3"></source>
@@ -130,7 +167,7 @@ export function Player({ releaseList }) {
               {" "}
               {releaseList.map((track) => (
                 <li key={track.name} className={styles.track}>
-                  <Track onClick={switchTrack} track={track} />
+                  <Track onClick={switchTrack} track={track}/>
                 </li>
               ))}
             </ul>
@@ -140,3 +177,5 @@ export function Player({ releaseList }) {
     </div>
   );
 }
+
+
