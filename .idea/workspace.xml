@@ -76,9 +76,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e2d438d-f565-4f94-9317-f2238fca45fa" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.modules.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AudioAnalyzer/AudioAnalyzer.js" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.modules.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+>>>>>>> f8cfdbcce20086143c91254759be248881eff877
       <change beforePath="$PROJECT_DIR$/src/components/Player/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player/Player.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +132,11 @@
       <updated>1605037223349</updated>
       <workItem from="1605037224427" duration="3013000" />
       <workItem from="1605116757075" duration="29168000" />
+<<<<<<< HEAD
       <workItem from="1605190009614" duration="18088000" />
+=======
+      <workItem from="1605190009614" duration="17585000" />
+>>>>>>> f8cfdbcce20086143c91254759be248881eff877
     </task>
     <servers />
   </component>
