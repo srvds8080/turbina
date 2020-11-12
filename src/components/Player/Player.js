@@ -1,4 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 import styles from "./Player.module.css";
 import { Track } from "../Track/Track";
 import { ReactComponent as PlayIcon } from "../../images/play.svg";
@@ -114,11 +116,14 @@ export function Player({ releaseList }) {
           <source src={currentTrack.link} type="audio/mp3"></source>
         </audio>
       </div>
-      {
-        <div
-          className={`${styles.penal} ${
-            isOpenPlaylist ? styles.penal_state_visible : ""
-          }`}
+
+      <div
+        className={`${styles.penal} ${
+          isOpenPlaylist ? styles.penal_state_visible : ""
+        }`}
+      >
+        <SimpleBar
+          className={isOpenPlaylist ? styles.simplebar_state_visible : ""}
         >
           <h3 className={styles.penalTitle}>
             {isOpenLyrics ? "Текст песни:" : "Релизы:"}
@@ -135,8 +140,8 @@ export function Player({ releaseList }) {
               ))}
             </ul>
           )}
-        </div>
-      }
+        </SimpleBar>
+      </div>
     </div>
   );
 }
