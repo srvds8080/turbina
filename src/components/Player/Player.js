@@ -78,7 +78,7 @@ export function Player({ releaseList }) {
     <div className={styles.container}>
       <div className={styles.playerContainer}>
         <button onClick={togglePlay} className={styles.playBtn}>
-          {isPaused ? <PlayIcon /> : <PauseIcon />}
+          {isPaused ? <PlayIcon className={styles.playIcon} /> : <PauseIcon />}
         </button>
         <div className={styles.songContainer}>
           <div className={styles.songContent}>

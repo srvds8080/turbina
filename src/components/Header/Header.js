@@ -10,7 +10,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.navigation}>
         <a href="/" className={styles.logo}>
-          <img src={logo} alt="логотип" />
+          <img className={styles.logoIcon} src={logo} alt="логотип" />
         </a>
         <ul className={styles.streamingList}>
           {streamingList.map((item) => (
@@ -23,7 +23,7 @@ export function Header() {
         </ul>
       </div>
       <h1 className={styles.title}>
-        <img src={turbina} alt="Турбина" />
+        <img className={styles.titleImage} src={turbina} alt="Турбина" />
       </h1>
       <Player releaseList={releaseList} />
     </header>
