@@ -7,11 +7,8 @@ export default function Input({
                                 value, typeError, labelId, children
                               }) {
   return (
-    <>
       <label
-        id={labelId}
         className={`${styles.label} ${type === "checkbox" && styles.labelCheckbox}`}>
-
         <input
           className={`${styles.input} ${type === "checkbox" && styles.checkBox}`}
           type={type}
@@ -26,13 +23,10 @@ export default function Input({
           autoComplete={autoComplete}/>
         {children}
         {typeError && <span
-          className={styles.formError}
-          id={styles.formError}>
+          className={styles.formError}>
           {typeError}
         </span>}
 
       </label>
-
-    </>
   )
 }

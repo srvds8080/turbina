@@ -30,12 +30,12 @@ export function Form({title, subTitle, textButton}) {
       setValues((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.name === "formCheckbox" ?
-          !prevState.formCheckbox && toggleCheckBox() : e.target.value
+          !prevState.formCheckbox: e.target.value
       }));
       const element = e.target;
 
       handleValidate(element);
-    }, [handleValidate, toggleCheckBox]
+    }, [handleValidate]
   );
   const handleOnSubmit = useCallback(
     (e) => {
@@ -52,8 +52,6 @@ export function Form({title, subTitle, textButton}) {
       }
     }, [handleValidate]
   )
-
-
   return (
     <form className={styles.form} noValidate onSubmit={handleOnSubmit}>
       <>
@@ -108,20 +106,20 @@ export function Form({title, subTitle, textButton}) {
         <Input
           type="checkbox"
           name="formCheckbox"
-          labelId="formCheckbox"
           checked={values.formCheckbox}
           onChange={(e) => {
             handleOnChange(e);
+            toggleCheckBox();
           }}
           required
           autoComplete="off"
           typeError={errors.formCheckbox}>
-          {<p className={styles.labelText}>
+          <p className={styles.labelText}>
               <span className={`${styles.checkCircle}
               ${isChecked && styles.checkCircleActive}`}/>
             {!isChecked && <span>Согласен с&#8194;</span>}
             {!isChecked && <a href="/" className={styles.labelLink}>офертой</a>}
-          </p>}
+          </p>
         </Input>
       </>
       <button className={styles.button} type="submit">
