@@ -8,7 +8,7 @@
   font-style: italic;
   font-weight: 400;
   font-size: 50px;
-  line-height: 61px;
+  line-height: 1.22;
 }
 
 .subtitle {
@@ -16,7 +16,7 @@
   margin-bottom: 60px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.4;
 }
 
 .input {
@@ -46,6 +46,7 @@
 
 .label {
   display: flex;
+  max-width: 220px;
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
@@ -56,11 +57,9 @@
   color: #000000;
 }
 
-.checkBox {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  user-select: none;
+.inputsGrid {
+  display: grid;
+  grid-gap: 10px;
 }
 
 .checkCircle {
@@ -79,6 +78,7 @@
 
 .labelText {
   display: flex;
+  width: max-content;
   flex-direction: row;
   align-items: center;
   margin-top: 0;
@@ -95,5 +95,8 @@
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 1.25;
+  animation-name: none;
 }
+
+
