@@ -1,7 +1,8 @@
 .main {
+  width: calc(100% - 20px);
   max-width: 1260px;
   margin: 0 auto;
-  padding: 110px 51px;
+  padding: 110px 50px;
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
@@ -9,4 +10,26 @@
 
 .articles {
   max-width: 760px;
+}
+@media screen and (max-width: 1024px) {
+  .articles {
+    max-width: 680px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 80px 20px;
+  }
+  .articles {
+    max-width: 648px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .main {
+    max-width: calc(100% - 10px);
+    border-radius: 8px;
+  }
+  .articles {
+    max-width: 270px;
+  }
 }
