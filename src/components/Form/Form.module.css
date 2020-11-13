@@ -46,6 +46,7 @@
 
 .label {
   display: flex;
+  max-width: 220px;
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
