@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 import styles from "./Player.module.css";
@@ -17,7 +17,7 @@ export function Player({releaseList}) {
   const context = useMemo(() => new window.AudioContext(), []);
   const analyser = context.createAnalyser();
   const requestId = window.requestAnimationFrame;
-  
+
   const [isPaused, setIsPaused] = useState(true);
   const [isOpenPlaylist, setIsOpenPlaylist] = useState(false);
   const [isOpenLyrics, setIsOpenLyrics] = useState(false);
@@ -43,9 +43,7 @@ export function Player({releaseList}) {
     !audioElement.current.paused && window.requestAnimationFrame(loop)
     const array = new Uint8Array(2048);
     analyser.getByteFrequencyData(array);
-    blur.current.style.background = `radial-gradient(at bottom, rgba(${array[4]}, ${array[8]}, 255, 0.7) 10%, rgba(255, ${array[64]}, ${array[128]}, 0.5) 50%, rgba(${array[16]}, ${array[48]}, ${array[32]}, 0.3) 90%), url("../../images/background.jpg")`
-    //осторожно!!для тех кто хочет сойти с ума)))::
-    // blur.current.style.background = `repeating-radial-gradient(circle, rgb(${array[4]}, ${array[8]}, ${array[16]}) ${array[0]*0.2}%, rgba(${array[32]}, ${array[64]}, ${array[128]}, ${array[24]}) ${array[0]*0.3}%, rgba(${array[16]}, ${array[48]}, ${array[32]}, ${array[32]}) ${array[0]*0.6}%)`
+    blur.current.style.background = `radial-gradient(at bottom, rgba(25, 40, 130, 0.6) ${array[10] * 0.1}%, rgba(130, ${array[64]}, ${array[128]}, 0.5) 30%, rgba(240, 170, 170, 0.5) 90%), url("../../images/background.jpg")`
   }, [])
   const togglePlay = useCallback(() => {
     if (audioElement.current) {
@@ -111,64 +109,69 @@ export function Player({releaseList}) {
       <div className={styles.container}>
         <div className={styles.playerContainer}>
           <button onClick={togglePlay} className={styles.playBtn}>
-            {isPaused ? <PlayIcon/> : <PauseIcon/>}
+            {isPaused ? <PlayIcon /> : <PauseIcon />}
           </button>
           <div className={styles.songContainer}>
             <div className={styles.songContent}>
             <span
               ref={trackName}
-              className={`${styles.songName} 
-              ${isTrackNameOverflow ? styles.songName_overflow : ""}`}>
+              className={`${styles.songName} ${
+                isTrackNameOverflow ? styles.songName_overflow : ""
+              }`}
+            >
               {currentTrack.name}
             </span>
               <span className={styles.currentTime}>
               {currentMinutes}:
-              {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
+                {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
             </span>
             </div>
             <div className={styles.progressBar}>
             <span
               className={styles.progress}
-              style={{ width: `${(currentTime / duration) * 100}%` }}/>
+              style={{ width: `${(currentTime / duration) * 100}%` }}
+            ></span>
             </div>
           </div>
-        </div>
-        {isOpenPlaylist && (
-          <button onClick={toggleLyrics} className={styles.lyricsBtn}>
-            {isOpenLyrics ? "Релизы" : "Текст песни"}
-          </button>
-        )}
-        <button onClick={togglePlaylist} className={styles.togglePlaylist}>
-          {isOpenPlaylist ? <CrossIcon /> : <ArrowIcon />}
-        </button>
-        <audio ref={audioElement} controls className={styles.nativePlayer}>
-          <source src={currentTrack.link} type="audio/mp3"></source>
-        </audio>
-      </div>
-      <div
-        className={`${styles.penal} 
-                    ${isOpenPlaylist ? styles.penal_state_visible : "" }`}>
-        <SimpleBar
-          className={isOpenPlaylist ? styles.simplebar_state_visible : ""}>
-          <h3 className={styles.penalTitle}>
-            {isOpenLyrics ? "Текст песни:" : "Релизы:"}
-          </h3>
-          {isOpenLyrics ? (
-            <div className={styles.lyrics}>{currentTrack.lyrics}</div>
-          ) : (
-            <ul className={styles.releases}>
-              {" "}
-              {releaseList.map((track) => (
-                <li key={track.name} className={styles.track}>
-                  <Track onClick={switchTrack} track={track} />
-                </li>
-              ))}
-            </ul>
+          {isOpenPlaylist && (
+            <button onClick={toggleLyrics} className={styles.lyricsBtn}>
+              {isOpenLyrics ? "Релизы" : "Текст песни"}
+            </button>
           )}
-        </SimpleBar>
+          <button onClick={togglePlaylist} className={styles.togglePlaylist}>
+            {isOpenPlaylist ? <CrossIcon /> : <ArrowIcon />}
+          </button>
+          <audio ref={audioElement} controls className={styles.nativePlayer}>
+            <source src={currentTrack.link} type="audio/mp3"></source>
+          </audio>
+        </div>
+
+        <div
+          className={`${styles.penal} ${
+            isOpenPlaylist ? styles.penal_state_visible : ""
+          }`}
+        >
+          <SimpleBar
+            className={isOpenPlaylist ? styles.simplebar_state_visible : ""}
+          >
+            <h3 className={styles.penalTitle}>
+              {isOpenLyrics ? "Текст песни:" : "Релизы:"}
+            </h3>
+            {isOpenLyrics ? (
+              <div className={styles.lyrics}>{currentTrack.lyrics}</div>
+            ) : (
+              <ul className={styles.releases}>
+                {" "}
+                {releaseList.map((track) => (
+                  <li key={track.name} className={styles.track}>
+                    <Track onClick={switchTrack} track={track} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </SimpleBar>
+        </div>
       </div>
-    </div>
-  );
+      </>
+    );
 }
-
-
