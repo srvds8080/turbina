@@ -22,7 +22,6 @@ export function Player({ releaseList }) {
   const duration = audioElement.current
     ? Math.round(audioElement.current.duration)
     : 0;
-
   const togglePlay = useCallback(() => {
     if (audioElement.current) {
       if (isPaused) {

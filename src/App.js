@@ -2,13 +2,14 @@ import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
 import { Article } from "./components/Article/Article";
+import { Form } from "./components/Form/Form";
 import { Footer } from "./components/Footer/Footer";
 import {
   articleAbout,
   articleThesis,
   articleHowItWork,
 } from "./utils/constants";
-import { Form } from "./components/Form/Form";
+import React from "react";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Article title="О проекте." contentArray={articleAbout} />
         <Article title="Как это работает?" contentArray={articleHowItWork} />
         <Article title="Тезисы." contentArray={articleThesis} />
-        <Form />
+        <Form title="Форма"
+        subTitle="Заполняя эту форму, вы становитесь частью проекта."
+        textButton="Отправить форму"/>
       </Main>
       <Footer />
     </div>
