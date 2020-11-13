@@ -19,6 +19,40 @@
   line-height: 1.4;
 }
 
+.input {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.inputLast {
+  margin-bottom: 0;
+}
+
+.inputTextArea {
+  width: 100%;
+  height: 280px;
+  border-radius: 30px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 20px;
+  margin-bottom: 16px;
+  border: 2px solid black;
+  outline: none;
+}
+
+.label {
+  display: flex;
+  max-width: 220px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 43px;
+}
+
 .labelLink {
   color: #000000;
 }
