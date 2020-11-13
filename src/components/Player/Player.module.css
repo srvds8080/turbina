@@ -96,9 +96,7 @@
   padding: 0 44px 0 36px;
   width: 100%;
   margin: 0 auto;
-  /* height: 137px; */
   height: 0;
-  /* overflow: auto; */
   padding-top: 30px;
   transition: height 0.5s linear;
   box-sizing: border-box;
@@ -165,6 +163,20 @@
 
 .track:hover {
   font-style: italic;
+}
+
+.blur {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: url("../../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: background 0.9s ease;
+  filter: blur(10px);
 }
 
 :global([data-simplebar]) {

@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Main } from "./components/Main/Main";
@@ -9,16 +10,15 @@ import {
   articleThesis,
   articleHowItWork,
 } from "./utils/constants";
-import React from "react";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Main>
-        <Article title="О проекте." contentArray={articleAbout} />
+        <Article title="О проекте" contentArray={articleAbout} />
         <Article title="Как это работает?" contentArray={articleHowItWork} />
-        <Article title="Тезисы." contentArray={articleThesis} />
+        <Article title="Тезисы" contentArray={articleThesis} />
         <Form title="Форма"
         subTitle="Заполняя эту форму, вы становитесь частью проекта."
         textButton="Отправить форму"/>
