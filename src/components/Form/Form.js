@@ -30,12 +30,12 @@ export function Form({title, subTitle, textButton}) {
       setValues((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.name === "formCheckbox" ?
-          !prevState.formCheckbox : e.target.value
+          !prevState.formCheckbox && toggleCheckBox() : e.target.value
       }));
       const element = e.target;
 
       handleValidate(element);
-    }, [handleValidate]
+    }, [handleValidate, toggleCheckBox]
   );
   const handleOnSubmit = useCallback(
     (e) => {
@@ -112,7 +112,6 @@ export function Form({title, subTitle, textButton}) {
           checked={values.formCheckbox}
           onChange={(e) => {
             handleOnChange(e);
-            toggleCheckBox();
           }}
           required
           autoComplete="off"
