@@ -9,7 +9,7 @@ import { ReactComponent as ArrowIcon } from "../../images/arrow.svg";
 import { ReactComponent as CrossIcon } from "../../images/cross.svg";
 
 // eslint-disable-next-line
-const context = new window.AudioContext() || new window.webkitAudioContext();
+const context = new window.AudioContext || new window.webkitAudioContext; // prettier-ignore
 const analyser = context.createAnalyser();
 
 export function Player({ releaseList }) {
