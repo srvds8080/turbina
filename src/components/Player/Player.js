@@ -1,21 +1,21 @@
-import React, { useRef, useState, useCallback, useEffect, useMemo } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 import styles from "./Player.module.css";
-import {Track} from "../Track/Track";
-import {ReactComponent as PlayIcon} from "../../images/play.svg";
-import {ReactComponent as PauseIcon} from "../../images/pause.svg";
-import {ReactComponent as ArrowIcon} from "../../images/arrow.svg";
-import {ReactComponent as CrossIcon} from "../../images/cross.svg";
+import { Track } from "../Track/Track";
+import { ReactComponent as PlayIcon } from "../../images/play.svg";
+import { ReactComponent as PauseIcon } from "../../images/pause.svg";
+import { ReactComponent as ArrowIcon } from "../../images/arrow.svg";
+import { ReactComponent as CrossIcon } from "../../images/cross.svg";
 
+const context = new window.AudioContext();
+const analyser = context.createAnalyser();
 
-export function Player({releaseList}) {
-
+export function Player({ releaseList }) {
   const audioElement = useRef();
   const trackName = useRef();
   const blur = useRef();
-  const context = useMemo(() => new window.AudioContext(), []);
-  const analyser = context.createAnalyser();
+  const isConnected = useRef(false);
   const requestId = window.requestAnimationFrame;
 
   const [isPaused, setIsPaused] = useState(true);
@@ -31,36 +31,44 @@ export function Player({releaseList}) {
     : 0;
 
   useEffect(() => {
-    const audio = context.createMediaElementSource(audioElement.current)
-    audio.connect(analyser).connect(context.destination)
-    analyser.connect(context.destination)
-    analyser.fftSize = 2048;
-  }, [])
+    if (!isConnected.current) {
+      isConnected.current = true;
+      const audio = context.createMediaElementSource(audioElement.current);
+      audio.connect(analyser).connect(context.destination);
+      analyser.connect(context.destination);
+      analyser.fftSize = 2048;
+    }
+  }, []);
 
   const loop = useCallback(() => {
     //в условии нельзя устанавливать isPaused,
     // т.к. его состояние устанавливается после вызова loop
-    !audioElement.current.paused && window.requestAnimationFrame(loop)
+    !audioElement.current.paused && window.requestAnimationFrame(loop);
     const array = new Uint8Array(2048);
     analyser.getByteFrequencyData(array);
-    blur.current.style.background = `radial-gradient(at bottom, rgba(25, 40, 130, 0.6) ${array[10] * 0.1}%, rgba(130, ${array[64]}, ${array[128]}, 0.5) 30%, rgba(240, 170, 170, 0.5) 90%), url("../../images/background.jpg")`
-  }, [])
+    blur.current.style.background = `radial-gradient(at bottom, rgba(25, 40, 130, 0.6) ${
+      array[10] * 0.1
+    }%, rgba(130, ${array[64]}, ${
+      array[128]
+    }, 0.5) 30%, rgba(240, 170, 170, 0.5) 90%), url("../../images/background.jpg")`;
+  }, []);
   const togglePlay = useCallback(() => {
     if (audioElement.current) {
       if (isPaused) {
-        if (context.state === "suspended") { //при первом запуске аудио контексту нужно сменить состояние на "running"
+        if (context.state === "suspended") {
+          //при первом запуске аудио контексту нужно сменить состояние на "running"
           context.resume();
         }
         setIsPaused(false);
         audioElement.current.play();
-        loop()
+        loop();
       } else {
-        window.cancelAnimationFrame(requestId) //удаляем рекурсию вызова f loop();
+        window.cancelAnimationFrame(requestId); //удаляем рекурсию вызова f loop();
         setIsPaused(true);
         audioElement.current.pause();
       }
     }
-  }, [isPaused, context, loop, requestId]);
+  }, [isPaused, loop, requestId]);
 
   const togglePlaylist = useCallback(() => {
     setIsOpenPlaylist(!isOpenPlaylist);
@@ -105,32 +113,36 @@ export function Player({releaseList}) {
 
   return (
     <>
-      <div ref={blur} className={styles.blur}/>
+      <div ref={blur} className={styles.blur} />
       <div className={styles.container}>
         <div className={styles.playerContainer}>
           <button onClick={togglePlay} className={styles.playBtn}>
-            {isPaused ? <PlayIcon /> : <PauseIcon />}
+            {isPaused ? (
+              <PlayIcon className={styles.playIcon} />
+            ) : (
+              <PauseIcon />
+            )}
           </button>
           <div className={styles.songContainer}>
             <div className={styles.songContent}>
-            <span
-              ref={trackName}
-              className={`${styles.songName} ${
-                isTrackNameOverflow ? styles.songName_overflow : ""
-              }`}
-            >
-              {currentTrack.name}
-            </span>
+              <span
+                ref={trackName}
+                className={`${styles.songName} ${
+                  isTrackNameOverflow ? styles.songName_overflow : ""
+                }`}
+              >
+                {currentTrack.name}
+              </span>
               <span className={styles.currentTime}>
-              {currentMinutes}:
+                {currentMinutes}:
                 {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
-            </span>
+              </span>
             </div>
             <div className={styles.progressBar}>
-            <span
-              className={styles.progress}
-              style={{ width: `${(currentTime / duration) * 100}%` }}
-            ></span>
+              <span
+                className={styles.progress}
+                style={{ width: `${(currentTime / duration) * 100}%` }}
+              ></span>
             </div>
           </div>
           {isOpenPlaylist && (
@@ -172,6 +184,6 @@ export function Player({releaseList}) {
           </SimpleBar>
         </div>
       </div>
-      </>
-    );
+    </>
+  );
 }
