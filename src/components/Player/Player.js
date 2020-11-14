@@ -8,7 +8,7 @@ import { ReactComponent as PauseIcon } from "../../images/pause.svg";
 import { ReactComponent as ArrowIcon } from "../../images/arrow.svg";
 import { ReactComponent as CrossIcon } from "../../images/cross.svg";
 
-const context = new window.AudioContext();
+const context = new window.AudioContext || new window.webkitAudioContext;
 const analyser = context.createAnalyser();
 
 export function Player({ releaseList }) {
