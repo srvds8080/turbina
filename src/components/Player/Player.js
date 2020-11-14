@@ -105,12 +105,18 @@ export function Player({ releaseList }) {
           </div>
         </div>
         {isOpenPlaylist && (
-          <button onClick={toggleLyrics} className={styles.lyricsBtn}>
-            {isOpenLyrics ? "Релизы" : "Текст песни"}
-          </button>
+          <div className={styles.lyricsBtnWrap}>
+            <button onClick={toggleLyrics} className={styles.lyricsBtn}>
+              {isOpenLyrics ? "Релизы" : "Текст песни"}
+            </button>
+          </div>
         )}
         <button onClick={togglePlaylist} className={styles.togglePlaylist}>
-          {isOpenPlaylist ? <CrossIcon /> : <ArrowIcon />}
+          {isOpenPlaylist ? (
+            <CrossIcon className={styles.togglePlaylistIcon} />
+          ) : (
+            <ArrowIcon className={styles.togglePlaylistIcon} />
+          )}
         </button>
         <audio ref={audioElement} controls className={styles.nativePlayer}>
           <source src={currentTrack.link} type="audio/mp3"></source>

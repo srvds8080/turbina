@@ -65,9 +65,34 @@
   width: 720px;
 }
 
-@media screen and (max-width: 1279px) {
+.streaming {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.close {
+  margin-bottom: 6px;
+}
+
+.showStreaming {
+  background: none;
+  border: 2px solid #fff;
+  padding: 6px 15px;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  line-height: 14px;
+  border-radius: 30px;
+}
+
+@media (max-width: 1279px) {
   .logoIcon {
     width: 40px;
+  }
+  .streamingItem {
+    margin-bottom: 7px;
   }
   .streamingLink {
     padding: 8px 18px;
@@ -76,5 +101,28 @@
   }
   .titleImage {
     width: 600px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .titleImage {
+    width: 620px;
+  }
+}
+
+@media (max-width: 767px) {
+  .logoIcon {
+    width: 16px;
+  }
+  .streamingItem {
+    margin-bottom: 6px;
+  }
+  .streamingLink {
+    padding: 7px 16px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .titleImage {
+    width: 270px;
   }
 }
