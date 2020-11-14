@@ -188,7 +188,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   transition: background 0.9s ease;
-  filter: blur(10px);
 }
 
 :global([data-simplebar]) {
