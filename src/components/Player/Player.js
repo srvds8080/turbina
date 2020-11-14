@@ -51,7 +51,7 @@ export function Player({ releaseList }) {
       array[10] * 0.1
     }%, rgba(130, ${array[64]}, ${
       array[128]
-    }, 0.5) 30%, rgba(240, 170, 170, 0.5) 90%), url("../../images/background.jpg")`;
+    }, 0.5) 30%, rgba(240, 170, 170, 0.5) 90%)`;
   }, []);
   const togglePlay = useCallback(() => {
     if (audioElement.current) {
@@ -147,9 +147,11 @@ export function Player({ releaseList }) {
             </div>
           </div>
           {isOpenPlaylist && (
-            <button onClick={toggleLyrics} className={styles.lyricsBtn}>
-              {isOpenLyrics ? "Релизы" : "Текст песни"}
-            </button>
+            <div className={styles.lyricsBtnWrap}>
+              <button onClick={toggleLyrics} className={styles.lyricsBtn}>
+                {isOpenLyrics ? "Релизы" : "Текст песни"}
+              </button>
+            </div>
           )}
           <button onClick={togglePlaylist} className={styles.togglePlaylist}>
             {isOpenPlaylist ? <CrossIcon /> : <ArrowIcon />}
