@@ -5,7 +5,6 @@
   position: relative;
   min-height: 100vh;
   box-sizing: border-box;
-  background-color: blueviolet;
 }
 
 .navigation {
@@ -20,6 +19,7 @@
 
 .logoIcon {
   width: 50px;
+  max-height: 50px;
 }
 
 .streamingList {
