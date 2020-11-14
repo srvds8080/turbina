@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 import styles from "./Player.module.css";
@@ -14,12 +8,14 @@ import { ReactComponent as PauseIcon } from "../../images/pause.svg";
 import { ReactComponent as ArrowIcon } from "../../images/arrow.svg";
 import { ReactComponent as CrossIcon } from "../../images/cross.svg";
 
+const context = new window.AudioContext();
+const analyser = context.createAnalyser();
+
 export function Player({ releaseList }) {
   const audioElement = useRef();
   const trackName = useRef();
   const blur = useRef();
-  const context = useMemo(() => new window.AudioContext(), []);
-  const analyser = context.createAnalyser();
+  const isConnected = useRef(false);
   const requestId = window.requestAnimationFrame;
 
   const [isPaused, setIsPaused] = useState(true);
@@ -35,10 +31,13 @@ export function Player({ releaseList }) {
     : 0;
 
   useEffect(() => {
-    const audio = context.createMediaElementSource(audioElement.current);
-    audio.connect(analyser).connect(context.destination);
-    analyser.connect(context.destination);
-    analyser.fftSize = 2048;
+    if (!isConnected.current) {
+      isConnected.current = true;
+      const audio = context.createMediaElementSource(audioElement.current);
+      audio.connect(analyser).connect(context.destination);
+      analyser.connect(context.destination);
+      analyser.fftSize = 2048;
+    }
   }, []);
 
   const loop = useCallback(() => {
@@ -69,7 +68,7 @@ export function Player({ releaseList }) {
         audioElement.current.pause();
       }
     }
-  }, [isPaused, context, loop, requestId]);
+  }, [isPaused, loop, requestId]);
 
   const togglePlaylist = useCallback(() => {
     setIsOpenPlaylist(!isOpenPlaylist);
